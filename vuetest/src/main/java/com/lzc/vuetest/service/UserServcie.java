@@ -1,10 +1,16 @@
 package com.lzc.vuetest.service;
 
-import com.lzc.vuetest.model.User;
 
-import javax.servlet.http.HttpSession;
+import com.lzc.vuetest.entity.User;
+
+import java.util.List;
+
 
 public interface UserServcie {
-    /** 用户登录*/
-    String userLogin(User user, HttpSession session);
+    /**
+     * 根据用户名和密码查询
+     */
+    List<User> findByNameAndPassword(User user);
+    /** 根据userId获取user*/
+    User selectByUId(String userId);
 }

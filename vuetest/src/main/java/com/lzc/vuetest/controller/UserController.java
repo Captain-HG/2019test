@@ -1,17 +1,17 @@
 package com.lzc.vuetest.controller;
 
-import com.lzc.vuetest.config.ErrorDict;
-import com.lzc.vuetest.model.User;
+import com.lzc.vuetest.entity.User;
+import com.lzc.vuetest.service.SecurityService;
 import com.lzc.vuetest.service.UserServcie;
-import org.hibernate.validator.constraints.pl.REGON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @AUTHOR HG-captain
@@ -23,20 +23,29 @@ public class UserController {
     @Autowired
     UserServcie userServcie;
 
-    @RequestMapping("/user/login")
+    @RequestMapping("/getname")
     @ResponseBody
-    public String userLogin(@RequestBody(required = false) User user,@RequestBody(required = false) String name) {
-        System.out.println(name);
-        System.out.println("mmp");
-        System.out.println("user:"+user);
-//        if (user!=null) {
-//            System.out.println(user);
-//            String s = userServcie.userLogin(user, session);
-//            return s;
-//        }
-//        else {
-//            return ErrorDict.LOGIN_ERROR;
-//        }
-        return "100";
+    public String getUserName( @RequestBody Map map){
+//        System.out.println(userId);
+       String userId = (String) map.get("userId");
+        User user = userServcie.selectByUId(userId);
+        return user.getUsername();
     }
+
+    @RequestMapping("/test01")
+    @ResponseBody
+    public String test01() {
+        return "mmp";
+    }
+
+
+    @RequestMapping("/userlogin")
+    @ResponseBody
+    public String login(@RequestBody User user) {
+        System.out.println("user" + user);
+        //  System.out.println(user);
+
+        return "login";
+    }
+
 }

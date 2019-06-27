@@ -1,38 +1,34 @@
-//package com.lzc.vuetest.config;
-//
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.http.HttpMethod;
-//import org.springframework.web.cors.CorsConfiguration;
-//import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-//import org.springframework.web.filter.CorsFilter;
-//
-///**
-// * 描述： 使用Filter 处理跨域请求，即CORS（跨来源资源共享）。
-// *
-// * @author city space
-// * @URL https://www.cnblogs.com/cityspace/p/6858969.html
-// */
-//@Configuration
-//public class SimpleCORS
-//{
-//    /**
-//     * 设置 跨域请求参数，处理跨域请求
-//     *
-//     * @return
-//     */
-//    @Bean
-//    public CorsFilter corsFilter()
-//    {
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", buildConfig());
-//        return new CorsFilter(source);
-//    }
-//
-//
-//
-//    private CorsConfiguration buildConfig()
-//    {
+package com.lzc.vuetest.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+
+/**
+ * 描述： 使用Filter 处理跨域请求，即CORS（跨来源资源共享）。
+ *
+ * @author city space
+ * @URL https://www.cnblogs.com/cityspace/p/6858969.html
+ */
+@Configuration
+public class SimpleCORS {
+    /**
+     * 设置 跨域请求参数，处理跨域请求
+     *
+     * @return
+     */
+    @Bean
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", buildConfig());
+        return new CorsFilter(source);
+    }
+
+
+    private CorsConfiguration buildConfig() {
 //        CorsConfiguration corsConfiguration = new CorsConfiguration();
 //
 //// 允许跨域访问的域名
@@ -52,5 +48,11 @@
 //        corsConfiguration.setAllowCredentials(true);
 //
 //        return corsConfiguration;
-//    }
-//}
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.addAllowedOrigin("*");
+        corsConfiguration.addAllowedHeader("*");
+        corsConfiguration.addAllowedMethod("*");
+        corsConfiguration.setAllowCredentials(true);
+        return corsConfiguration;
+    }
+}

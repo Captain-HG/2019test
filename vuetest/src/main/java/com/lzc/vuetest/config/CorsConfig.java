@@ -15,8 +15,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 /**
  * 解决vue+spring boot跨域问题
  */
-@Configuration
-public class CorsConfig  extends WebMvcConfigurerAdapter{
+//@Configuration
+public class CorsConfig extends WebMvcConfigurerAdapter{
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
